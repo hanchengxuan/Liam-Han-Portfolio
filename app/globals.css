@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; --font-mono: 'JetBrains Mono', 'Fira Code', 'IBM Plex Mono', ui-monospace, monospace; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #05080f; color: #d8ffe9; font-family: var(--font-mono); }
+body::before { content: ''; position: fixed; inset: 0; pointer-events: none; background: linear-gradient(rgba(10,255,100,.035) 1px,transparent 1px), linear-gradient(90deg,rgba(10,255,100,.025) 1px,transparent 1px), radial-gradient(circle at 20% 10%,rgba(0,255,156,.18),transparent 28rem), radial-gradient(circle at 80% 0%,rgba(43,130,255,.14),transparent 30rem); background-size: 42px 42px,42px 42px,auto,auto; z-index: -2; }
+body::after { content: ''; position: fixed; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg,rgba(255,255,255,.03),rgba(255,255,255,.03) 1px,transparent 1px,transparent 4px); z-index: -1; }
+::selection { background: rgba(0,255,156,.35); color: white; }
