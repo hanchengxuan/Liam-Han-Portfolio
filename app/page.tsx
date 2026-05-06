@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 const navItems = ['About', 'Skills', 'Experience', 'Projects', 'Contact'];
 const skills = ['Next.js','React','TypeScript','Tailwind CSS','Node.js','API Design','Conversational AI','Automation','Data Pipelines','Dashboard UX','Cloud Deployment','GitHub Actions'];
 const projects = [
@@ -10,7 +12,7 @@ const experience = [
   'Worked across AI automation, operational data processing, and internal portal tooling where reliability and clarity matter more than flashy demos.',
   'Most production and company repositories are private, but the public repos above show the themes: practical systems, AI-enabled workflows, and useful interfaces.'
 ];
-function Section({ id, eyebrow, title, children }: { id: string; eyebrow: string; title: string; children: React.ReactNode }) { return <section id={id} className="scroll-mt-24 border border-terminal/20 bg-black/35 p-6 shadow-glow backdrop-blur md:p-8"><p className="mb-2 text-xs uppercase tracking-[0.35em] text-terminal/70">{eyebrow}</p><h2 className="mb-6 text-2xl font-bold text-white md:text-3xl">{title}</h2>{children}</section>; }
+function Section({ id, eyebrow, title, children }: { id: string; eyebrow: string; title: string; children: ReactNode }) { return <section id={id} className="scroll-mt-24 border border-terminal/20 bg-black/35 p-6 shadow-glow backdrop-blur md:p-8"><p className="mb-2 text-xs uppercase tracking-[0.35em] text-terminal/70">{eyebrow}</p><h2 className="mb-6 text-2xl font-bold text-white md:text-3xl">{title}</h2>{children}</section>; }
 export default function Home() {
   return <main className="mx-auto min-h-screen max-w-6xl px-4 py-6 md:px-8 md:py-10">
     <nav className="sticky top-4 z-10 mb-10 flex flex-wrap items-center justify-between gap-4 border border-terminal/25 bg-void/85 px-4 py-3 backdrop-blur"><a href="#top" className="text-sm font-bold text-terminal">~/liam-han</a><div className="flex flex-wrap gap-3 text-xs text-terminal/75 md:text-sm">{navItems.map((item) => <a key={item} href={'#' + item.toLowerCase()} className="hover:text-white">{item}</a>)}<a href="/resume-liam-han.txt" download className="text-white hover:text-terminal">Resume</a></div></nav>
