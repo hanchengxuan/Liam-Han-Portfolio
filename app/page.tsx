@@ -59,35 +59,32 @@ const projects = [
     repo: 'hanchengxuan/Axify-Portal',
     link: 'https://github.com/hanchengxuan/Axify-Portal',
     access: 'private production repo',
-    summary: 'Portal work around React/TypeScript frontends, Python services, SQL Server, Cosmos DB, Dockerized local infrastructure, migrations, and operational dashboards.',
+    description: 'A production internal portal for managing operational workflows, dashboards, and business data across service processes.',
+    stack: 'React, TypeScript, Python, SQL Server, Cosmos DB, Docker, Azure',
   },
   {
     name: 'Conversational AI',
     repo: 'hanchengxuan/conversational-ai',
     link: 'https://github.com/hanchengxuan/conversational-ai',
     access: 'private production repo',
-    summary: 'Speech-enabled AI assistant stack with Python backend services, React frontends, Azure deployment flow, STT/TTS integrations, and voice workflow experimentation.',
-  },
-  {
-    name: 'Call Log Processing',
-    repo: 'hanchengxuan/call-log-processing',
-    link: 'https://github.com/hanchengxuan/call-log-processing',
-    access: 'private utility repo',
-    summary: 'Call-log processing utilities focused on turning raw interaction records into structured, analysis-ready operational data.',
+    description: 'A speech-enabled AI assistant platform supporting voice interaction workflows, backend orchestration, and frontend experimentation.',
+    stack: 'Python, React, TypeScript, Azure, STT/TTS APIs, Docker',
   },
   {
     name: 'SkillShift',
     repo: 'hanchengxuan/SkillShift',
     link: 'https://github.com/hanchengxuan/SkillShift',
     access: 'public repo',
-    summary: 'Public TypeScript project showing product-building instincts, structured UI work, and fast iteration on a complete application surface.',
+    description: 'A full-stack learning and productivity application showing end-to-end product design, structured UI development, and fast iteration.',
+    stack: 'TypeScript, React, Node.js, modern frontend tooling',
   },
   {
     name: 'Grocery Goblin',
     repo: 'hanchengxuan/grocery-goblin',
     link: 'https://github.com/hanchengxuan/grocery-goblin',
-    access: 'public repo',
-    summary: 'FastAPI-backed grocery savings assistant with product search, offer importers, basket pricing, image/OCR identification, and automation-ready architecture.',
+    access: 'personal project',
+    description: 'A personal grocery savings assistant that compares basket prices, imports store offers, and supports product/image-based item lookup.',
+    stack: 'FastAPI, Python, React, TypeScript, OCR/image processing, product search APIs, automation scripts',
   },
 ];
 
@@ -103,7 +100,7 @@ export default function Home() {
       <Section id="about" eyebrow="01 // About" title="Builder mindset, production bias."><p className="max-w-3xl leading-8 text-emerald-100/80">I build clean interfaces, reliable backend services, and AI workflows that remove manual work instead of adding novelty. My recent work spans venue booking automation, conversational AI, dashboards, admin platforms, secure APIs, and data processing systems. Some production code is private, but the patterns are consistent: ship useful software, measure outcomes, and keep the system maintainable.</p></Section>
       <Section id="skills" eyebrow="02 // Skills" title="Stack and operating mode."><div className="grid gap-4 md:grid-cols-2">{skillGroups.map((group) => <article key={group.label} className="border border-terminal/15 bg-emerald-950/20 p-4"><h3 className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-terminal">{group.label}</h3><div className="flex flex-wrap gap-2">{group.items.map((skill) => <span key={skill} className="border border-terminal/15 bg-black/35 px-3 py-2 text-sm text-emerald-50/85"># {skill}</span>)}</div></article>)}</div></Section>
       <Section id="experience" eyebrow="03 // Experience" title="Production systems, measurable outcomes."><div className="space-y-5">{experiences.map((job) => <article key={job.company} className="border-l-2 border-terminal/60 bg-black/25 p-5"><div className="flex flex-wrap items-baseline justify-between gap-2"><h3 className="text-xl font-bold text-white">{job.role} — {job.company}</h3><p className="text-sm text-terminal/80">{job.location} · {job.period}</p></div><p className="mt-3 leading-7 text-emerald-100/80">{job.copy}</p><ul className="mt-3 space-y-2 text-sm leading-6 text-emerald-100/70">{job.bullets.map((bullet) => <li key={bullet}>$ {bullet}</li>)}</ul></article>)}</div></Section>
-      <Section id="projects" eyebrow="04 // Projects" title="Selected repositories and shipped work."><div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{projects.map((project) => <article key={project.repo} className="flex min-h-72 flex-col border border-terminal/20 bg-black/45 p-5 transition hover:-translate-y-1 hover:border-terminal"><p className="text-xs uppercase tracking-[0.25em] text-terminal/60">{project.repo}</p><h3 className="mt-3 text-xl font-bold text-white">{project.name}</h3><p className="mt-1 text-xs uppercase tracking-[0.2em] text-emerald-100/45">{project.access}</p><p className="mt-4 flex-1 leading-7 text-emerald-100/75">{project.summary}</p><a href={project.link} target="_blank" rel="noreferrer" className="mt-5 text-sm font-bold text-terminal hover:text-white">open repo →</a></article>)}</div><p className="mt-5 text-sm text-emerald-100/55">Note: selected company repositories are private; public repositories are included where they can be opened directly.</p></Section>
+      <Section id="projects" eyebrow="04 // Projects" title="Selected repositories and shipped work."><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">{projects.map((project) => <article key={project.repo} className="flex min-h-72 flex-col border border-terminal/20 bg-black/45 p-5 transition hover:-translate-y-1 hover:border-terminal"><p className="text-xs uppercase tracking-[0.25em] text-terminal/60">{project.repo}</p><h3 className="mt-3 text-xl font-bold text-white">{project.name}</h3><p className="mt-1 text-xs uppercase tracking-[0.2em] text-emerald-100/45">{project.access}</p><p className="mt-4 leading-7 text-emerald-100/75">{project.description}</p><p className="mt-4 flex-1 text-sm leading-6 text-emerald-100/60"><span className="font-bold text-terminal">Tech stack:</span> {project.stack}</p><a href={project.link} target="_blank" rel="noreferrer" className="mt-5 text-sm font-bold text-terminal hover:text-white">open repo →</a></article>)}</div><p className="mt-5 text-sm text-emerald-100/55">Note: selected company repositories are private; public repositories are included where they can be opened directly.</p></Section>
       <Section id="contact" eyebrow="05 // Contact" title="Open a secure channel."><div className="grid gap-4 md:grid-cols-3"><a className="border border-terminal/20 bg-black/40 p-5 hover:border-terminal" href="mailto:hanchengxuan98@gmail.com"><span className="block text-terminal">email</span>hanchengxuan98@gmail.com</a><a className="border border-terminal/20 bg-black/40 p-5 hover:border-terminal" href="https://github.com/hanchengxuan" target="_blank" rel="noreferrer"><span className="block text-terminal">github</span>@hanchengxuan</a><a className="border border-terminal/20 bg-black/40 p-5 hover:border-terminal" href="https://www.linkedin.com/in/chengxuan-han" target="_blank" rel="noreferrer"><span className="block text-terminal">linkedin</span>/in/chengxuan-han</a></div></Section>
     </div><footer className="mt-10 border-t border-terminal/20 py-6 text-xs text-terminal/60">Built with Next.js + Tailwind CSS. Optimized for Vercel, exported statically for GitHub Pages backup.</footer>
   </main>;
