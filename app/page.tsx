@@ -2,33 +2,34 @@
 
 import { useMemo, useState, type ReactNode } from 'react';
 
-const navItems = ['About', 'Impact', 'Skills', 'Experience', 'Projects', 'Contact'];
+const navItems = ['About', 'Skills', 'Experience', 'Projects', 'Contact'];
 const resumeHref = './resume-liam-han.pdf';
 const email = 'hanchengxuan98@gmail.com';
 const roles = ['Full Stack', 'AI', 'Frontend', 'Automation'] as const;
 type Role = (typeof roles)[number];
 
-const roleCopy: Record<Role, string> = {
-  'Full Stack': 'Web applications, backend services, APIs, dashboards, and deployment-ready product work.',
-  AI: 'Conversational AI, speech workflows, prompt-driven tools, and practical AI integrations.',
-  Frontend: 'React and TypeScript interfaces with clean layouts, reusable components, and usable admin/product flows.',
-  Automation: 'Data processing, workflow automation, integrations, and tools that reduce manual work.',
+const focusProfiles: Record<Role, { title: string; headline: string; bullets: string[] }> = {
+  'Full Stack': {
+    title: 'Full Stack Software Engineer',
+    headline: 'I build web apps, APIs, dashboards, and production-ready tools across frontend and backend.',
+    bullets: ['React/TypeScript product interfaces', 'Python/Node APIs and data flows', 'Databases, Docker, cloud deployment'],
+  },
+  AI: {
+    title: 'AI Engineer',
+    headline: 'I build practical AI workflows around voice agents, prompts, automation, and product integrations.',
+    bullets: ['Conversational AI and voice workflows', 'STT/TTS integrations', 'Prompt and workflow orchestration'],
+  },
+  Frontend: {
+    title: 'Frontend Engineer',
+    headline: 'I build clean React interfaces for dashboards, portals, admin tools, and product workflows.',
+    bullets: ['React + TypeScript UI systems', 'Reusable components and forms', 'Dashboard and portal experience'],
+  },
+  Automation: {
+    title: 'Automation Engineer',
+    headline: 'I build workflow automation, integrations, and internal tools that reduce manual operations.',
+    bullets: ['Operational workflow automation', 'API and data integrations', 'Dockerized services and scripts'],
+  },
 };
-
-const impactMetrics = [
-  { value: '31K+', label: 'managed calls supported' },
-  { value: '31K+', label: 'customer interactions' },
-  { value: '3K+', label: 'bookings processed' },
-  { value: '180+', label: 'venues supported' },
-  { value: '$1.38M+', label: 'estimated booking revenue' },
-];
-
-const highlights = [
-  'Built conversational AI booking workflows with speech-to-text and text-to-speech integrations.',
-  'Developed dashboards, admin tools, and operational workflows for venue/service teams.',
-  'Worked across React, TypeScript, Python APIs, databases, Docker, and cloud deployment flows.',
-  'Built personal full-stack projects from product idea to working application structure.',
-];
 
 const lookingFor = ['Full Stack Engineer', 'Frontend Engineer', 'AI Engineer', 'Software Engineer'];
 
@@ -96,72 +97,44 @@ const projects = [
     name: 'Axify Portal',
     repo: 'hanchengxuan/Axify-Portal',
     link: 'https://github.com/hanchengxuan/Axify-Portal',
-    access: 'private production repo',
+    access: 'Built independently · private production repo',
     roles: ['Full Stack', 'Frontend', 'Automation'],
-    description: "A customer-facing control portal for Axify's hospitality voice AI. Venue teams configure their own agent persona, FAQs, operating hours, workflows, reservation rules, integrations, and reporting settings; those changes sync to the live agent, while teams monitor call logs, transcripts, review requests, and performance dashboards.",
-    stack: ['React', 'TypeScript', 'Python', 'SQL Server', 'Cosmos DB', 'Docker', 'Azure'],
-    details: ['Built self-serve Axi settings for persona, FAQs, workflow modules, communication rules, deployment details, and reservation/accommodation configuration.', 'Connected portal configuration to backend services so venue-specific changes can update the live conversational agent without manual engineering handoff.', 'Added interactive call log views with transcripts, filters, share links, action status, customer feedback, review escalation, and operational dashboards for call summary, classification, bookings, revenue, SMS, sentiment, and team-time-saving metrics.'],
-    caseStudy: {
-      problem: 'Hospitality teams needed one place to tune their AI concierge, check live call behaviour, review problematic calls, and understand booking/guest-service performance without relying on engineers for every change.',
-      role: 'Worked across portal UI, backend integration, database-backed agent configuration, real-time call-log review, feedback workflows, and dashboard views.',
-      work: ['React/TypeScript settings screens for agent persona, FAQs, workflows, communication, reservations, integrations, and deployment', 'Backend/data integration for venue-specific configuration updates used by the live voice agent', 'Interactive call-log review, transcript sharing, customer feedback, review-status workflow, and dashboard reporting views'],
-      outcome: 'Gave venue teams a practical control surface for managing their AI agent, monitoring real calls, escalating issues to the team, and tracking operational results from the same portal.',
-      next: 'Improve configuration audit history, publish validation, and deeper dashboard analytics for agent performance and failed-call reasons.',
-    },
+    description: "A customer-facing control portal for Axify's hospitality voice AI. Venue teams configure their agent persona, FAQs, operating hours, workflows, reservation rules, integrations, and reporting settings, then monitor calls and agent performance.",
+    stack: ['React', 'TypeScript', 'Python', 'SQL Server', 'Cosmos DB', 'Azure'],
+    details: ['Built self-serve agent settings and configuration flows that sync to the live voice agent.', 'Built call-log, transcript, review feedback, and dashboard views for venue teams.'],
   },
   {
     id: 'conversational-ai',
     name: 'Conversational AI',
     repo: 'hanchengxuan/conversational-ai',
     link: 'https://github.com/hanchengxuan/conversational-ai',
-    access: 'private production repo',
+    access: 'Production work · private repo',
     roles: ['AI', 'Full Stack', 'Automation'],
-    description: 'A production voice AI concierge for hospitality businesses. The agent answers phone calls, handles reservations and booking changes, qualifies private-event and accommodation enquiries, answers venue FAQs, sends SMS links, redirects/hands off when needed, and writes outcomes back to booking systems, calendars, dashboards, and call logs.',
-    stack: ['Python', 'React', 'TypeScript', 'Deepgram', 'ElevenLabs', 'Twilio', 'Azure', 'Docker'],
-    details: ['Built speech-first call flows using Twilio, STT/TTS providers, prompt orchestration, task allocation, summaries, and session tracking.', 'Implemented hospitality workflows for table reservations, booking modification/cancellation/confirmation, private events, accommodation, takeaway, lost property, menu/FAQ handling, SMS sending, and human handoff.', 'Integrated with operational systems such as ResDiary, SevenRooms, accommodation APIs, calendars, Cosmos DB, SQL Server, and the Axify Portal configuration layer.'],
-    caseStudy: {
-      problem: 'Hospitality operators miss revenue and waste staff time when phone enquiries, booking changes, FAQs, and private-event leads pile up during service hours.',
-      role: 'Worked on backend orchestration, speech integrations, workflow logic, summaries, booking-system integration, and support tooling around the live agent.',
-      work: ['Python call-orchestration services with Twilio, Deepgram/Whisper-style STT, ElevenLabs TTS, prompt loading, task allocation, and session summaries', 'Workflow modules for reservations, booking changes, private events, accommodation, takeaway, lost property, FAQs, SMS links, and human handoff', 'Integrations with reservation/accommodation systems, calendars, Cosmos DB/SQL Server logging, and portal-driven configuration'],
-      outcome: 'Supported an always-on AI concierge that can handle reservations, qualify high-value enquiries, complete guest requests, and reduce phone workload for venue teams.',
-      next: 'Improve observability around latency, failed calls, handoff reasons, and workflow-level quality signals.',
-    },
+    description: 'A hospitality voice AI concierge that answers calls, handles reservations and booking changes, qualifies enquiries, answers venue FAQs, sends SMS links, and hands off when needed.',
+    stack: ['Python', 'Twilio', 'Deepgram', 'ElevenLabs', 'Azure', 'Docker'],
+    details: ['Worked on speech-first call orchestration, task allocation, summaries, and workflow logic.', 'Supported reservation, private-event, accommodation, FAQ, SMS, and human-handoff flows.'],
   },
   {
     id: 'skillshift',
     name: 'SkillShift',
     repo: 'hanchengxuan/SkillShift',
     link: 'https://github.com/hanchengxuan/SkillShift',
-    access: 'public repo',
+    access: 'Built independently · public repo',
     roles: ['Frontend', 'Full Stack'],
-    description: 'A full-stack learning and productivity application showing end-to-end product design, structured UI development, and fast iteration.',
+    description: 'A full-stack learning and productivity app focused on structured progress tracking, clean product flows, and reusable frontend architecture.',
     stack: ['TypeScript', 'React', 'Node.js', 'Modern frontend tooling'],
-    details: ['Designed a complete application surface rather than a single isolated demo.', 'Focused on reusable UI structure and fast product iteration.', 'Useful as a public example of frontend/product-building style.'],
-    caseStudy: {
-      problem: 'Learning/productivity tools often become disconnected notes rather than a structured workflow for progress and iteration.',
-      role: 'Built the product surface, UI structure, and application flow as a public project.',
-      work: ['TypeScript application structure', 'Reusable React interface patterns', 'Product-style screens and iteration flow'],
-      outcome: 'Shows frontend/product thinking through a complete app surface rather than only isolated components.',
-      next: 'Add stronger persistence, analytics, and progress recommendation flows.',
-    },
+    details: ['Designed and built the product surface end to end.', 'Used it to show practical frontend/product thinking beyond isolated components.'],
   },
   {
     id: 'grocery-goblin',
     name: 'Grocery Goblin',
     repo: 'hanchengxuan/grocery-goblin',
     link: 'https://github.com/hanchengxuan/grocery-goblin',
-    access: 'personal project',
+    access: 'Built independently · personal project',
     roles: ['Full Stack', 'AI', 'Automation'],
-    description: 'A personal grocery savings assistant that compares basket prices, imports store offers, and supports product/image-based item lookup.',
-    stack: ['FastAPI', 'Python', 'React', 'TypeScript', 'OCR/image processing', 'Product search APIs', 'Automation scripts'],
-    details: ['Built importer-friendly backend architecture for store offers and catalog data.', 'Added basket pricing and product lookup flows for grocery comparison.', 'Explored image/OCR-based item identification as a practical AI feature.'],
-    caseStudy: {
-      problem: 'Grocery prices and offers are hard to compare across stores when the data is split across catalogues, search results, and receipts/images.',
-      role: 'Built the backend architecture, importer flow, pricing logic, and early AI-assisted lookup direction.',
-      work: ['FastAPI backend for catalog/import workflows', 'Basket pricing and product lookup logic', 'OCR/image-processing path for identifying items'],
-      outcome: 'A useful personal project for demonstrating full-stack implementation, automation, and practical AI/OCR features.',
-      next: 'Improve real-world catalogue coverage and add more reliable product matching across stores.',
-    },
+    description: 'A grocery savings assistant that compares basket prices, imports store offers, and explores product/image-based item lookup.',
+    stack: ['FastAPI', 'Python', 'React', 'TypeScript', 'OCR/image processing'],
+    details: ['Built backend importer, basket pricing, and product lookup flows.', 'Explored OCR/image-assisted item identification as a practical AI feature.'],
   },
 ];
 
@@ -172,10 +145,11 @@ function Section({ id, eyebrow, title, children }: { id: string; eyebrow: string
 export default function Home() {
   const [selectedRole, setSelectedRole] = useState<Role>('Full Stack');
   const [openJob, setOpenJob] = useState(experiences[0].company);
-  const [activeProjectId, setActiveProjectId] = useState(projects[0].id);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
+  const activeFocus = focusProfiles[selectedRole];
   const filteredSkillGroups = useMemo(() => skillGroups.filter((group) => group.roles.includes(selectedRole)), [selectedRole]);
+  const focusedProjects = useMemo(() => projects.filter((project) => project.roles.includes(selectedRole)), [selectedRole]);
 
   function chooseRole(role: Role) {
     setSelectedRole(role);
@@ -194,14 +168,13 @@ export default function Home() {
 
   return <main className="mx-auto min-h-screen max-w-6xl px-4 py-6 md:px-8 md:py-10">
     <nav className="sticky top-4 z-10 mb-10 flex flex-wrap items-center justify-between gap-4 border border-terminal/25 bg-void/85 px-4 py-3 backdrop-blur"><a href="#top" className="text-sm font-bold text-terminal">~/liam-han</a><div className="flex flex-wrap gap-3 text-xs text-terminal/75 md:text-sm">{navItems.map((item) => <a key={item} href={'#' + item.toLowerCase()} className="hover:text-white">{item}</a>)}<a href={resumeHref} download className="text-white hover:text-terminal">Resume</a></div></nav>
-    <header id="top" className="mb-12 grid gap-8 md:grid-cols-[1.25fr_0.75fr] md:items-center"><div><p className="mb-4 text-terminal">Full Stack Software Engineer</p><h1 className="text-4xl font-black leading-tight text-white md:text-6xl">Liam <span className="text-terminal">(Chengxuan)</span> Han</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-emerald-100/80">I build web applications, backend services, conversational AI workflows, and automation tools for real business use cases.</p><div className="mt-8 flex flex-wrap gap-3"><a href="#projects" className="border border-terminal bg-terminal px-5 py-3 text-sm font-bold text-black hover:bg-white">View Projects</a><a href={resumeHref} download className="border border-terminal/50 px-5 py-3 text-sm font-bold text-terminal hover:border-white hover:text-white">Download Resume</a></div></div><div className="border border-terminal/25 bg-black/50 p-5 text-sm leading-7 text-terminal/85 shadow-glow"><p className="text-white">Choose a focus</p><div className="mt-4 grid gap-2">{roles.map((role) => <button key={role} type="button" onClick={() => chooseRole(role)} className={`border px-4 py-2 text-left transition ${selectedRole === role ? 'border-terminal bg-terminal text-black' : 'border-terminal/20 bg-black/35 text-emerald-100/80 hover:border-terminal hover:text-white'}`}>{role}</button>)}</div><p className="mt-4 text-emerald-100/70">{roleCopy[selectedRole]}</p></div></header>
+    <header id="top" className="mb-12 grid gap-8 md:grid-cols-[1.25fr_0.75fr] md:items-center"><div><p className="mb-4 text-terminal">{activeFocus.title}</p><h1 className="text-4xl font-black leading-tight text-white md:text-6xl">Liam <span className="text-terminal">(Chengxuan)</span> Han</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-emerald-100/80">{activeFocus.headline}</p><ul className="mt-5 grid gap-2 text-sm text-emerald-100/70 sm:grid-cols-3">{activeFocus.bullets.map((bullet) => <li key={bullet} className="border border-terminal/15 bg-black/25 px-3 py-2">{bullet}</li>)}</ul><div className="mt-8 flex flex-wrap gap-3"><a href="#projects" className="border border-terminal bg-terminal px-5 py-3 text-sm font-bold text-black hover:bg-white">View Projects</a><a href={resumeHref} download className="border border-terminal/50 px-5 py-3 text-sm font-bold text-terminal hover:border-white hover:text-white">Download Resume</a></div></div><div className="border border-terminal/25 bg-black/50 p-5 text-sm leading-7 text-terminal/85 shadow-glow"><p className="text-white">Choose a focus</p><div className="mt-4 grid gap-2">{roles.map((role) => <button key={role} type="button" onClick={() => chooseRole(role)} className={`border px-4 py-2 text-left transition ${selectedRole === role ? 'border-terminal bg-terminal text-black' : 'border-terminal/20 bg-black/35 text-emerald-100/80 hover:border-terminal hover:text-white'}`}>{role}</button>)}</div><p className="mt-4 text-emerald-100/70">This focus updates the headline, key strengths, skill stack, and highlighted projects.</p></div></header>
     <div className="grid gap-6">
       <Section id="about" eyebrow="01 // About" title="About"><div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]"><p className="leading-8 text-emerald-100/80">I work across frontend, backend, and AI workflow development. My recent work includes venue booking automation, conversational AI, dashboards, admin platforms, secure APIs, and data processing systems. Some production code is private, but the selected projects below show the main areas I work in.</p><div className="border border-terminal/15 bg-black/30 p-5"><p className="font-bold text-white">Looking for</p><div className="mt-3 flex flex-wrap gap-2">{lookingFor.map((item) => <span key={item} className="border border-terminal/20 px-3 py-2 text-sm text-emerald-100/80">{item}</span>)}</div><p className="mt-4 text-sm leading-6 text-emerald-100/60">Interested in Sydney or remote roles where I can build user-facing products, automation systems, or AI-enabled workflows.</p></div></div></Section>
-      <Section id="impact" eyebrow="02 // Impact" title="Selected impact"><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">{impactMetrics.map((metric) => <article key={metric.label} className="border border-terminal/15 bg-emerald-950/20 p-4"><p className="text-3xl font-black text-terminal">{metric.value}</p><p className="mt-2 text-sm leading-6 text-emerald-100/70">{metric.label}</p></article>)}</div><div className="mt-5 grid gap-3 md:grid-cols-2">{highlights.map((item) => <p key={item} className="border-l-2 border-terminal/50 bg-black/25 p-4 leading-7 text-emerald-100/75">{item}</p>)}</div></Section>
-      <Section id="skills" eyebrow="03 // Skills" title={`${selectedRole} stack`}><div className="grid gap-4 md:grid-cols-2">{filteredSkillGroups.map((group) => <article key={group.label} className="border border-terminal/15 bg-emerald-950/20 p-4"><h3 className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-terminal">{group.label}</h3><div className="flex flex-wrap gap-2">{group.items.map((skill) => <span key={skill} className="border border-terminal/15 bg-black/35 px-3 py-2 text-sm text-emerald-50/85"># {skill}</span>)}</div></article>)}</div></Section>
-      <Section id="experience" eyebrow="04 // Experience" title="Experience"><div className="space-y-4">{experiences.map((job) => { const isOpen = openJob === job.company; return <article key={job.company} className="border-l-2 border-terminal/60 bg-black/25"><button type="button" onClick={() => setOpenJob(isOpen ? '' : job.company)} className="w-full p-5 text-left"><div className="flex flex-wrap items-baseline justify-between gap-2"><h3 className="text-xl font-bold text-white">{job.role} — {job.company}</h3><p className="text-sm text-terminal/80">{job.location} · {job.period}</p></div><p className="mt-3 leading-7 text-emerald-100/80">{job.summary}</p><p className="mt-3 text-sm font-bold text-terminal">{isOpen ? 'Hide details ↑' : 'View details ↓'}</p></button>{isOpen && <div className="border-t border-terminal/10 px-5 pb-5"><p className="pt-4 leading-7 text-emerald-100/70">{job.copy}</p><ul className="mt-3 space-y-2 text-sm leading-6 text-emerald-100/70">{job.bullets.map((bullet) => <li key={bullet}>• {bullet}</li>)}</ul></div>}</article>; })}</div></Section>
-      <Section id="projects" eyebrow="05 // Projects" title="Projects"><div className="grid gap-5 md:grid-cols-2">{projects.map((project) => { const isOpen = activeProjectId === project.id; return <article key={project.id} className={`border bg-black/45 p-5 transition hover:-translate-y-1 ${isOpen ? 'border-terminal shadow-glow' : 'border-terminal/20 hover:border-terminal'}`}><p className="break-words text-xs uppercase tracking-[0.18em] text-terminal/60">{project.repo}</p><div className="mt-3 flex flex-wrap items-start justify-between gap-3"><div><h3 className="text-xl font-bold text-white">{project.name}</h3><p className="mt-1 text-xs uppercase tracking-[0.16em] text-emerald-100/45">{project.access}</p></div><button type="button" onClick={() => setActiveProjectId(isOpen ? '' : project.id)} className="border border-terminal/40 px-3 py-2 text-xs font-bold text-terminal hover:border-white hover:text-white">{isOpen ? 'Hide case study' : 'View case study'}</button></div><p className="mt-4 leading-7 text-emerald-100/75">{project.description}</p><div className="mt-5"><p className="mb-2 text-sm font-bold text-terminal">Tech stack</p><div className="flex flex-wrap gap-2">{project.stack.map((item) => <span key={item} className="border border-terminal/15 bg-emerald-950/25 px-3 py-2 text-sm text-emerald-50/85">{item}</span>)}</div></div><div className="mt-5"><p className="mb-2 text-sm font-bold text-terminal">Highlights</p><ul className="space-y-2 text-sm leading-6 text-emerald-100/70">{project.details.map((detail) => <li key={detail}>• {detail}</li>)}</ul></div>{isOpen && <div className="mt-5 space-y-4 border-t border-terminal/10 pt-5 text-sm leading-6 text-emerald-100/70"><div><p className="font-bold text-terminal">Problem</p><p className="mt-1">{project.caseStudy.problem}</p></div><div><p className="font-bold text-terminal">My role</p><p className="mt-1">{project.caseStudy.role}</p></div><div><p className="font-bold text-terminal">Key work</p><ul className="mt-1 space-y-1">{project.caseStudy.work.map((item) => <li key={item}>• {item}</li>)}</ul></div><div><p className="font-bold text-terminal">Outcome</p><p className="mt-1">{project.caseStudy.outcome}</p></div><div><p className="font-bold text-terminal">Next improvement</p><p className="mt-1">{project.caseStudy.next}</p></div></div>}<a href={project.link} target="_blank" rel="noreferrer" className="mt-6 inline-block border border-terminal/50 px-4 py-3 text-sm font-bold text-terminal hover:border-white hover:text-white">Open repository →</a></article>; })}</div><p className="mt-5 text-sm text-emerald-100/55">Note: selected company repositories are private; public repositories are included where they can be opened directly.</p></Section>
-      <Section id="contact" eyebrow="06 // Contact" title="Contact"><div className="grid gap-4 md:grid-cols-3"><button type="button" onClick={copyEmail} className="border border-terminal/20 bg-black/40 p-5 text-left hover:border-terminal"><span className="block text-terminal">email</span><span className="block break-words">{email}</span><span className="mt-3 block text-xs uppercase tracking-[0.16em] text-emerald-100/45">{copiedEmail ? 'Copied' : 'Click to copy'}</span></button><a className="border border-terminal/20 bg-black/40 p-5 hover:border-terminal" href="https://github.com/hanchengxuan" target="_blank" rel="noreferrer"><span className="block text-terminal">github</span>@hanchengxuan</a><a className="border border-terminal/20 bg-black/40 p-5 hover:border-terminal" href="https://www.linkedin.com/in/chengxuan-han" target="_blank" rel="noreferrer"><span className="block text-terminal">linkedin</span>/in/chengxuan-han</a></div></Section>
+      <Section id="skills" eyebrow="02 // Skills" title={`${selectedRole} stack`}><div className="grid gap-4 md:grid-cols-2">{filteredSkillGroups.map((group) => <article key={group.label} className="border border-terminal/15 bg-emerald-950/20 p-4"><h3 className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-terminal">{group.label}</h3><div className="flex flex-wrap gap-2">{group.items.map((skill) => <span key={skill} className="border border-terminal/15 bg-black/35 px-3 py-2 text-sm text-emerald-50/85"># {skill}</span>)}</div></article>)}</div></Section>
+      <Section id="experience" eyebrow="03 // Experience" title="Experience"><div className="space-y-4">{experiences.map((job) => { const isOpen = openJob === job.company; return <article key={job.company} className="border-l-2 border-terminal/60 bg-black/25"><button type="button" onClick={() => setOpenJob(isOpen ? '' : job.company)} className="w-full p-5 text-left"><div className="flex flex-wrap items-baseline justify-between gap-2"><h3 className="text-xl font-bold text-white">{job.role} — {job.company}</h3><p className="text-sm text-terminal/80">{job.location} · {job.period}</p></div><p className="mt-3 leading-7 text-emerald-100/80">{job.summary}</p><p className="mt-3 text-sm font-bold text-terminal">{isOpen ? 'Hide details ↑' : 'View details ↓'}</p></button>{isOpen && <div className="border-t border-terminal/10 px-5 pb-5"><p className="pt-4 leading-7 text-emerald-100/70">{job.copy}</p><ul className="mt-3 space-y-2 text-sm leading-6 text-emerald-100/70">{job.bullets.map((bullet) => <li key={bullet}>• {bullet}</li>)}</ul></div>}</article>; })}</div></Section>
+      <Section id="projects" eyebrow="04 // Projects" title={`${selectedRole} projects`}><p className="mb-5 text-sm leading-6 text-emerald-100/60">Showing projects most relevant to the selected focus. Switch focus above to change this list.</p><div className="grid gap-5 md:grid-cols-2">{focusedProjects.map((project) => <article key={project.id} className="border border-terminal/20 bg-black/45 p-5 transition hover:-translate-y-1 hover:border-terminal"><p className="break-words text-xs uppercase tracking-[0.18em] text-terminal/60">{project.repo}</p><div className="mt-3"><h3 className="text-xl font-bold text-white">{project.name}</h3><p className="mt-1 text-xs uppercase tracking-[0.16em] text-emerald-100/45">{project.access}</p></div><p className="mt-4 leading-7 text-emerald-100/75">{project.description}</p><div className="mt-5"><p className="mb-2 text-sm font-bold text-terminal">Tech stack</p><div className="flex flex-wrap gap-2">{project.stack.map((item) => <span key={item} className="border border-terminal/15 bg-emerald-950/25 px-3 py-2 text-sm text-emerald-50/85">{item}</span>)}</div></div><ul className="mt-5 space-y-2 text-sm leading-6 text-emerald-100/70">{project.details.map((detail) => <li key={detail}>• {detail}</li>)}</ul><a href={project.link} target="_blank" rel="noreferrer" className="mt-5 inline-block border border-terminal/50 px-4 py-3 text-sm font-bold text-terminal hover:border-white hover:text-white">Open repository →</a></article>)}</div><p className="mt-5 text-sm text-emerald-100/55">Note: company repositories are private; public repositories are included where they can be opened directly.</p></Section>
+      <Section id="contact" eyebrow="05 // Contact" title="Contact"><div className="grid gap-4 md:grid-cols-3"><button type="button" onClick={copyEmail} className="border border-terminal/20 bg-black/40 p-5 text-left hover:border-terminal"><span className="block text-terminal">email</span><span className="block break-words">{email}</span><span className="mt-3 block text-xs uppercase tracking-[0.16em] text-emerald-100/45">{copiedEmail ? 'Copied' : 'Click to copy'}</span></button><a className="border border-terminal/20 bg-black/40 p-5 hover:border-terminal" href="https://github.com/hanchengxuan" target="_blank" rel="noreferrer"><span className="block text-terminal">github</span>@hanchengxuan</a><a className="border border-terminal/20 bg-black/40 p-5 hover:border-terminal" href="https://www.linkedin.com/in/chengxuan-han" target="_blank" rel="noreferrer"><span className="block text-terminal">linkedin</span>/in/chengxuan-han</a></div></Section>
     </div>
   </main>;
 }
