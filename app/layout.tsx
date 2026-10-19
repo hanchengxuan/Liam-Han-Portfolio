@@ -3,6 +3,8 @@ import type { ReactNode } from 'react';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://chengxuanhan.com'),
+  alternates: { canonical: '/' },
   title: 'Liam (Chengxuan) Han | Portfolio',
   description: 'Liam (Chengxuan) Han is a Sydney-based Software Engineer with 3+ years building production web applications, AI agents, data access controls, and customer-facing platforms.',
 };

@@ -1,6 +1,10 @@
 # Liam (Chengxuan) Han Portfolio
 
-Hacker-style portfolio site for Liam (Chengxuan) Han.
+Personal portfolio for Liam (Chengxuan) Han.
+
+Live site: https://chengxuanhan.com
+
+GitHub Pages publishes the static export at the custom domain root. Keep Next.js basePath and assetPrefix unset. The canonical deployment workflow is `.github/workflows/pages.yml`.
 
 ## Stack
 
