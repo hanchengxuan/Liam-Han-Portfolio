@@ -192,7 +192,7 @@ export default function Home() {
     </Section>
 
     <section id="projects" className="scroll-mt-44 border-t border-accent/25 py-7 md:scroll-mt-28 md:py-8">
-      <h2 className="mb-4 text-lg font-bold text-ink">Selected projects</h2>
+      <h2 className="mb-4 text-lg font-bold text-ink">Side projects</h2>
       <ul className="space-y-3">
         {projects.map((project) => <li key={project.name} className="flex items-start gap-3 text-sm leading-7">
           <Icon name="github" className="mt-1 h-4 w-4 text-accent" />
