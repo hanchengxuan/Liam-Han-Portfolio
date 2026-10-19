@@ -2,38 +2,46 @@ import type { ReactNode } from 'react';
 import Image from 'next/image';
 import ThemeToggle from './theme-toggle';
 import portrait from './liam-han.jpg';
+import Icon, { type IconName } from './icons';
 
-const navItems = ['About', 'Experience', 'Skills', 'Projects', 'Education', 'Contact'];
+const navItems = ['About', 'Skills', 'Experience', 'Projects', 'Certifications', 'Education', 'Contact'];
 const cvHref = './liam-han-cv.pdf';
 const email = 'hanchengxuan98@gmail.com';
 
 const skillGroups = [
   {
     label: 'Frontend',
+    icon: 'frontend',
     items: ['React', 'TypeScript', 'JavaScript', 'Next.js', 'GraphQL', 'Axios'],
   },
   {
     label: 'Backend',
+    icon: 'backend',
     items: ['Python', 'Flask', 'FastAPI', 'Node.js', 'NestJS', 'REST APIs', 'JWT'],
   },
   {
     label: 'AI Systems',
+    icon: 'brain',
     items: ['AI Agents', 'Tool Calling', 'RAG', 'Prompt Engineering', 'Workflow Orchestration'],
   },
   {
     label: 'Database',
+    icon: 'database',
     items: ['PostgreSQL', 'SQL Server', 'Azure Cosmos DB', 'Redis'],
   },
   {
     label: 'Cloud & DevOps',
+    icon: 'cloud',
     items: ['Azure Functions', 'Azure DevOps Pipelines', 'AWS', 'Docker', 'Git', 'GitHub Actions'],
   },
-];
+] satisfies { label: string; icon: IconName; items: string[] }[];
 
 const experiences = [
   {
     role: 'Software Engineer',
     company: 'Kimia',
+    logo: './assets/kimia.png',
+    initials: '',
     location: 'Sydney, Australia',
     period: 'Jun 2026–Present',
     summary: 'Build AI agents, data access controls, module entitlements, and notifications for a chemical intelligence platform.',
@@ -43,6 +51,8 @@ const experiences = [
   {
     role: 'Software Engineer',
     company: 'Axify.AI',
+    logo: './assets/axify.svg',
+    initials: '',
     location: 'Sydney, Australia',
     period: 'Nov 2024–Jun 2026',
     summary: 'Built a customer-facing agent portal, conversational AI systems, and automated call analytics.',
@@ -52,6 +62,8 @@ const experiences = [
   {
     role: 'Software Engineer',
     company: 'AI Consulting Group',
+    logo: './assets/aicg.png',
+    initials: '',
     location: 'Sydney, Australia',
     period: 'Mar 2024–Nov 2024',
     summary: 'Developed a client delivery platform, admin interfaces, reporting dashboards, and GPT-powered publishing tools.',
@@ -61,6 +73,8 @@ const experiences = [
   {
     role: 'Software Engineer',
     company: 'Thick AI',
+    logo: null,
+    initials: 'TA',
     location: 'Remote, China',
     period: 'Sep 2023–Mar 2024',
     summary: 'Built a clinical decision-support web application using Python, Flask, and JavaScript.',
@@ -70,57 +84,33 @@ const experiences = [
 ];
 
 const projects = [
-  {
-    id: 'kimia',
-    name: 'Ask Kimia & Platform Foundations',
-    repo: 'Kimia · Professional work',
-    link: '#experience',
-    access: 'Production work · private company code',
-    description: 'An LLM agent connected to application APIs, with streamed responses, multi-step tools, and a review-and-apply workflow for knowledge base updates. Platform access controls restrict retrieval to products and documents available to the user and assistant.',
-    stack: ['React', 'TypeScript', 'NestJS', 'FastAPI', 'PostgreSQL', 'Redis', 'BullMQ'],
-    details: ['Built agent execution, failure recovery, and run-level tracing alongside review-and-apply interfaces.', 'Delivered Access Data Scopes, module entitlements, and event-driven notifications with scheduled digests.'],
-  },
-  {
-    id: 'axify',
-    name: 'Axify Portal',
-    repo: 'hanchengxuan/Axify-Portal',
-    link: 'https://github.com/hanchengxuan/Axify-Portal',
-    access: 'Production work · private repo',
-    description: "A customer-facing control portal for Axify's hospitality voice AI. Venue teams configure their agent persona, FAQs, operating hours, workflows, reservation rules, integrations, and reporting settings, then monitor calls and agent performance.",
-    stack: ['React', 'TypeScript', 'Python', 'SQL Server', 'Cosmos DB', 'Azure'],
-    details: ['Built self-serve agent settings and configuration flows that sync to the live voice agent.', 'Built call-log, transcript, review feedback, and dashboard views for venue teams.'],
-  },
-  {
-    id: 'conversational-ai',
-    name: 'Conversational AI',
-    repo: 'hanchengxuan/conversational-ai',
-    link: 'https://github.com/hanchengxuan/conversational-ai',
-    access: 'Production work · private repo',
-    description: 'A hospitality voice AI concierge that answers calls, handles reservations and booking changes, qualifies enquiries, answers venue FAQs, sends SMS links, and hands off when needed.',
-    stack: ['Python', 'Twilio', 'Deepgram', 'ElevenLabs', 'Azure', 'Docker'],
-    details: ['Built Python agents combining LLM-based intent detection with multi-turn business workflows.', 'Supported reservation, private-event, accommodation, FAQ, SMS, and human-handoff flows.'],
-  },
-  {
-    id: 'skillshift',
-    name: 'SkillShift',
-    repo: 'hanchengxuan/SkillShift',
-    link: 'https://github.com/hanchengxuan/SkillShift',
-    access: 'Built independently · public repo',
-    description: 'A full-stack learning and productivity app focused on structured progress tracking, clean product flows, and reusable frontend architecture.',
-    stack: ['TypeScript', 'React', 'Node.js', 'Modern frontend tooling'],
-    details: ['Designed and built the product surface end to end.', 'Used it to show practical frontend/product thinking beyond isolated components.'],
-  },
-  {
-    id: 'grocery-goblin',
-    name: 'Grocery Goblin',
-    repo: 'hanchengxuan/grocery-goblin',
-    link: 'https://github.com/hanchengxuan/grocery-goblin',
-    access: 'Built independently · personal project',
-    description: 'A grocery savings assistant that compares basket prices, imports store offers, and explores product/image-based item lookup.',
-    stack: ['FastAPI', 'Python', 'React', 'TypeScript', 'OCR/image processing'],
-    details: ['Built backend importer, basket pricing, and product lookup flows.', 'Explored OCR/image-assisted item identification as a practical AI feature.'],
-  },
+  { name: 'TripFlow', link: 'https://github.com/hanchengxuan/tripflow', description: 'Shared travel itineraries and group expense tracking.' },
+  { name: 'ForkIt', link: 'https://github.com/hanchengxuan/ForkIt', description: 'A group dinner decider for finding a restaurant together.' },
+  { name: 'Grocery Goblin', link: 'https://github.com/hanchengxuan/grocery-goblin', description: 'An Australian grocery basket and price comparison project.' },
 ];
+
+const certifications = [
+  { title: 'Azure Fundamentals', code: 'AZ-900', level: 'Fundamentals', badge: 'cert-fundamentals.svg', link: 'https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/' },
+  { title: 'Azure Administrator Associate', code: 'AZ-104', level: 'Associate', badge: 'cert-associate.svg', link: 'https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/' },
+  { title: 'Power BI Data Analyst Associate', code: 'PL-300', level: 'Associate', badge: 'cert-associate.svg', link: 'https://learn.microsoft.com/en-us/credentials/certifications/power-bi-data-analyst-associate/' },
+];
+
+const technologyAssets: Record<string, string | undefined> = {
+  React: 'react', TypeScript: 'typescript', JavaScript: 'javascript', 'Next.js': 'nextjs', GraphQL: 'graphql', Axios: 'axios',
+  Python: 'python', Flask: 'flask', FastAPI: 'fastapi', 'Node.js': 'nodejs', NestJS: 'nestjs',
+  PostgreSQL: 'postgresql', 'SQL Server': 'sqlserver', 'Azure Cosmos DB': 'cosmosdb', Redis: 'redis',
+  'Azure Functions': 'azure', 'Azure DevOps Pipelines': 'azuredevops', AWS: 'aws', Docker: 'docker', Git: 'git', 'GitHub Actions': 'githubactions',
+};
+const skillSymbols: Record<string, IconName | undefined> = {
+  'REST APIs': 'api', JWT: 'key', 'AI Agents': 'brain', 'Tool Calling': 'tool', RAG: 'search', 'Prompt Engineering': 'prompt', 'Workflow Orchestration': 'workflow',
+};
+
+function SkillIcon({ skill, fallback }: { skill: string; fallback: IconName }) {
+  const asset = technologyAssets[skill];
+  return asset
+    ? <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded bg-white p-1"><Image src={`./assets/${asset}.svg`} width={20} height={20} alt="" className="h-5 w-5 object-contain" /></span>
+    : <Icon name={skillSymbols[skill] ?? fallback} className="h-5 w-5 text-accent" />;
+}
 
 function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return <section id={id} className="scroll-mt-44 border-t border-accent/25 py-10 md:scroll-mt-28 md:py-14">
@@ -167,64 +157,63 @@ export default function Home() {
       </div>
     </Section>
 
+    <Section id="skills" title="Skills & tools">
+      <div className="grid gap-7 md:grid-cols-2">
+        {skillGroups.map((group) => <article key={group.label}>
+          <h3 className="mb-4 flex items-center gap-3 font-bold text-ink"><Icon name={group.icon} className="h-6 w-6 text-accent" />{group.label}</h3>
+          <ul className="flex flex-wrap gap-2">
+            {group.items.map((skill) => <li key={skill} className="inline-flex items-center gap-2 border border-accent/20 bg-surface px-3 py-2 text-sm text-muted"><SkillIcon skill={skill} fallback={group.icon} />{skill}</li>)}
+          </ul>
+        </article>)}
+      </div>
+    </Section>
+
     <Section id="experience" title="Work experience">
-      <ol className="space-y-10">
-        {experiences.map((job) => <li key={job.company} className="grid gap-4 border-b border-accent/15 pb-10 last:border-b-0 last:pb-0 md:grid-cols-[0.65fr_1.35fr] md:gap-10">
-          <div>
-            <p className="text-sm font-bold text-accent">{job.period}</p>
-            <h3 className="mt-3 text-xl font-bold text-ink">{job.company}</h3>
-            <p className="mt-2 text-sm text-muted">{job.role}</p>
-            <p className="mt-2 text-sm text-muted">{job.location}</p>
-          </div>
-          <div>
-            <p className="mb-4 leading-7 text-ink">{job.summary}</p>
+      <div className="divide-y divide-accent/20 border-y border-accent/20">
+        {experiences.map((job, index) => <details key={job.company} open={index === 0} className="group">
+          <summary className="flex cursor-pointer list-none items-start gap-4 py-6 marker:content-none [&::-webkit-details-marker]:hidden">
+            <span className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border border-accent/15 p-2 ${job.company === 'Axify.AI' ? 'bg-[#171a18]' : 'bg-white'}`}>
+              {job.logo ? <Image src={job.logo} alt="" width={40} height={40} className="h-10 w-10 object-contain" /> : <span className="font-bold text-[#3f6952]">{job.initials}</span>}
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2"><h3 className="text-lg font-bold text-ink md:text-xl">{job.company}</h3><p className="text-sm text-accent">{job.period}</p></div>
+              <p className="mt-2 text-sm text-muted">{job.role} · {job.location}</p>
+              <p className="mt-3 text-sm leading-7 text-muted">{job.summary}</p>
+              <span className="mt-3 inline-block text-xs font-bold text-accent"><span className="group-open:hidden">View details</span><span className="hidden group-open:inline">Hide details</span></span>
+            </div>
+            <Icon name="chevron" className="mt-2 h-5 w-5 text-accent transition-transform group-open:rotate-180" />
+          </summary>
+          <div className="pb-7 md:pl-[4.5rem]">
             <ul className="list-disc space-y-3 pl-5 text-sm leading-7 text-muted">{job.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
             <p className="mt-5 border-l border-accent/40 pl-4 text-sm leading-7 text-muted">{job.copy}</p>
           </div>
+        </details>)}
+      </div>
+    </Section>
+
+    <section id="projects" className="scroll-mt-44 border-t border-accent/25 py-7 md:scroll-mt-28 md:py-8">
+      <h2 className="mb-4 text-lg font-bold text-ink">Selected projects</h2>
+      <ul className="space-y-3">
+        {projects.map((project) => <li key={project.name} className="flex items-start gap-3 text-sm leading-7">
+          <Icon name="github" className="mt-1 h-4 w-4 text-accent" />
+          <div><a href={project.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-bold text-accent underline underline-offset-4 hover:text-ink">{project.name}<Icon name="external" className="h-3 w-3" /></a><span className="text-muted"> — {project.description}</span></div>
         </li>)}
-      </ol>
-    </Section>
+      </ul>
+    </section>
 
-    <Section id="skills" title="Skills & tools">
-      <dl className="divide-y divide-accent/15">
-        {skillGroups.map((group) => <div key={group.label} className="grid gap-3 py-5 first:pt-0 md:grid-cols-[0.65fr_1.35fr] md:gap-10">
-          <dt className="font-bold text-ink">{group.label}</dt>
-          <dd className="flex flex-wrap gap-2">{group.items.map((skill) => <span key={skill} className="border border-accent/20 bg-tint px-3 py-2 text-sm text-muted">{skill}</span>)}</dd>
-        </div>)}
-      </dl>
-    </Section>
-
-    <Section id="projects" title="Selected projects">
-      <div className="grid gap-x-10 gap-y-8 md:grid-cols-2">
-        {projects.map((project) => <article key={project.id} className="border-t border-accent/20 pt-5">
-          <h3 className="text-xl font-bold text-ink">{project.name}</h3>
-          <p className="mt-2 text-xs leading-6 text-muted">{project.access}</p>
-          <p className="mt-4 leading-7 text-muted">{project.description}</p>
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-muted">{project.details.map((detail) => <li key={detail}>{detail}</li>)}</ul>
-          <p className="mt-4 text-sm leading-7 text-accent">{project.stack.join(' · ')}</p>
-          <a href={project.link} target={project.link.startsWith('#') ? undefined : '_blank'} rel="noreferrer" className="mt-4 inline-block text-sm font-bold text-accent underline underline-offset-4 hover:text-ink">{project.link.startsWith('#') ? 'View work experience →' : 'Open repository →'}</a>
+    <Section id="certifications" title="Microsoft certifications">
+      <div className="grid gap-6 md:grid-cols-3">
+        {certifications.map((cert) => <article key={cert.code} className="flex items-start gap-4 border-t border-accent/20 pt-5">
+          <Image src={`./assets/${cert.badge}`} width={72} height={72} alt="" className="h-[4.5rem] w-[4.5rem] shrink-0" />
+          <div><p className="text-xs leading-6 text-muted">Microsoft Certified · {cert.code}</p><h3 className="mt-2 font-bold leading-7 text-ink">{cert.title}</h3><a href={cert.link} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-2 text-xs text-accent underline underline-offset-4 hover:text-ink">About this certification<Icon name="external" className="h-3 w-3" /></a></div>
         </article>)}
       </div>
-      <p className="mt-8 text-sm leading-7 text-muted">Company repositories are private. Public repositories are linked where available.</p>
     </Section>
 
-    <Section id="education" title="Education & certifications">
+    <Section id="education" title="Education">
       <div className="grid gap-8 md:grid-cols-2 md:gap-12">
-        <div>
-          <h3 className="mb-4 text-lg font-bold text-ink">Education</h3>
-          <ul className="space-y-5 leading-7 text-muted">
-            <li>Master of Information Technology (Artificial Intelligence)<span className="block text-sm">University of New South Wales</span></li>
-            <li>Bachelor of Computer Science<span className="block text-sm">Yancheng Institute of Technology</span></li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="mb-4 text-lg font-bold text-ink">Microsoft certifications</h3>
-          <ul className="space-y-3 leading-7 text-muted">
-            <li>Microsoft Certified: Azure Fundamentals</li>
-            <li>Microsoft Certified: Azure Administrator Associate</li>
-            <li>Microsoft Certified: Power BI Data Analyst Associate</li>
-          </ul>
-        </div>
+        <article className="flex items-start gap-4"><span className="flex h-12 w-12 shrink-0 items-center justify-center bg-tint text-accent"><Icon name="graduation" className="h-7 w-7" /></span><div><p className="text-sm text-accent">Master’s degree</p><h3 className="mt-2 text-lg font-bold leading-7 text-ink">University of New South Wales</h3><p className="mt-3 leading-7 text-muted">Master of Information Technology</p><p className="mt-1 text-sm text-muted">Artificial Intelligence</p></div></article>
+        <article className="flex items-start gap-4"><span className="flex h-12 w-12 shrink-0 items-center justify-center bg-tint text-accent"><Icon name="graduation" className="h-7 w-7" /></span><div><p className="text-sm text-accent">Bachelor’s degree</p><h3 className="mt-2 text-lg font-bold leading-7 text-ink">Yancheng Institute of Technology</h3><p className="mt-3 leading-7 text-muted">Bachelor of Computer Science</p></div></article>
       </div>
     </Section>
 
