@@ -5,28 +5,28 @@
 :root {
   color-scheme: light;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'IBM Plex Mono', ui-monospace, monospace;
-  --color-canvas: 255 247 249;
-  --color-surface: 255 253 254;
-  --color-tint: 255 235 241;
-  --color-ink: 46 23 37;
-  --color-muted: 104 69 87;
-  --color-accent: 225 29 72;
-  --color-accent-hover: 190 18 60;
+  --color-canvas: 246 247 242;
+  --color-surface: 253 254 250;
+  --color-tint: 232 238 229;
+  --color-ink: 34 47 40;
+  --color-muted: 79 98 86;
+  --color-accent: 63 105 82;
+  --color-accent-hover: 46 82 63;
   --color-on-accent: 255 255 255;
-  --color-selection: 254 205 218;
+  --color-selection: 207 224 206;
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --color-canvas: 23 20 29;
-  --color-surface: 33 28 41;
-  --color-tint: 43 36 52;
-  --color-ink: 255 241 245;
-  --color-muted: 214 197 209;
-  --color-accent: 251 113 133;
-  --color-accent-hover: 253 164 175;
-  --color-on-accent: 46 23 37;
-  --color-selection: 112 32 62;
+  --color-canvas: 23 30 26;
+  --color-surface: 31 41 35;
+  --color-tint: 41 54 46;
+  --color-ink: 236 243 234;
+  --color-muted: 187 205 189;
+  --color-accent: 158 196 164;
+  --color-accent-hover: 184 215 188;
+  --color-on-accent: 34 47 40;
+  --color-selection: 60 84 66;
 }
 
 * { box-sizing: border-box; }
