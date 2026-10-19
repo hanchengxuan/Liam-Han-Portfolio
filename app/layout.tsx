@@ -4,7 +4,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Liam (Chengxuan) Han | Portfolio',
-  description: 'Hacker-style portfolio for Liam (Chengxuan) Han, software engineer building AI, automation, and production web systems.',
+  description: 'Liam (Chengxuan) Han is a Sydney-based Full-Stack Engineer with 3+ years building production web applications, AI agents, data access controls, and workflow automation.',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
